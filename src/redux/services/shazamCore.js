@@ -7,11 +7,11 @@ export const shazamCoreApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://shazam-core.p.rapidapi.com/v1',
     prepareHeaders: (headers) => {
-      headers.set('X-RAPIDAPI-KEY', 'a0349e4efdmsh1015a43e2f3f565p175be2jsn32cb58440322');
+      headers.set('X-RAPIDAPI-KEY', '');
       return headers;
     },
   }),
-  // the endpoints is the object that contains all the endpoints we want to create. It accepts a function that receives an endpoint builder object as an argument. This object contains all the methods we need to create our endpoints. 
+  // the endpoints is the object that contains all the endpoints we want to create. It accepts a function that receives an endpoint builder object as an argument. This object contains all the methods we need to create our endpoints.
   endpoints: (builder) => ({
     getTopCharts: builder.query({ query: () => '/charts/world' }),
   }),

@@ -7,14 +7,14 @@ const Discover = () => {
   const { data, isFetching, error } = useGetTopChartsQuery();
   const genreTitle = 'Pop';
   if (isFetching) return <Loader title="Loading songs..." />;
-  if (error) return <Error title="Something went wrong" />;
+  if (error) return <Error />;
   console.log(data);
   return (
     <div className="flex flex-col">
       <div className="w-full flex justify-between sm:flex-row flex-col mt-4 mb-10 items-center">
 
-        <h2 className="font-bold text-3xl text-[#548687] text-left">Discover {genreTitle}</h2>
-        <select name="" id="" onChange={() => {}} value="" className="bg-[#F8FFAE] text-[#548687] p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5">
+        <h2 className="font-bold text-3xl text-darkgreen text-left">Discover {genreTitle}</h2>
+        <select name="" id="" onChange={() => {}} value="" className="bg-yellow text-darkgreen p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5">
           {genres.map((genre) => <option key={genre.value} value={genre.value}>{genre.title}</option>)}
         </select>
       </div>
