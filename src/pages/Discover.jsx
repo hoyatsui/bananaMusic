@@ -28,7 +28,7 @@ const Discover = () => {
 
         <h2 className="font-bold text-3xl text-darkgreen text-left">Discover {genreTitle}</h2>
 
-        <select name="" id="" onChange={() => {}} value="" className="bg-[#e7ffae] text-darkgreen p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5">
+        <select name="" id="" onChange={() => {}} value="" className="bg-yellow/50 text-darkgreen p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5">
           {genres.map((genre) => <option key={genre.value} value={genre.value}>{genre.title}</option>)}
         </select>
       </div>
