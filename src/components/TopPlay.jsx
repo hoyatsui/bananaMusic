@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper';
@@ -42,11 +42,14 @@ const TopPlay = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data } = useGetTopChartsQuery();
   const divRef = useRef(null);
-
+  const { pathname } = useLocation();
   // useeffect to scroll to top when new song is played when topplay is rendered.
   useEffect(() => {
-    divRef.current.scrollIntoView({ behavior: 'smooth' });
-  });
+    console.log(pathname);
+    if (divRef.current) {
+      divRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [pathname]);
 
   const topPlays = data?.slice(0, 5);
 

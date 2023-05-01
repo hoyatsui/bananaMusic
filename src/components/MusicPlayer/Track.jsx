@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Track = ({ isPlaying, isActive, activeSong }) => (
   <div className="truncate flex-1 flex items-center justify-start">
@@ -6,12 +7,16 @@ const Track = ({ isPlaying, isActive, activeSong }) => (
       <img src={activeSong?.images?.coverart} alt="cover art" className="rounded-full" />
     </div>
     <div className="w-[50%]">
-      <p className="truncate text-darkgreen font-bold text-lg">
-        {activeSong?.title ? activeSong?.title : 'No active Song'}
-      </p>
-      <p className="truncate text-darkgreen">
-        {activeSong?.subtitle ? activeSong?.subtitle : 'No active Song'}
-      </p>
+      <Link to={`/songs/${activeSong.key}`}>
+        <p className="truncate text-darkgreen font-bold text-lg">
+          {activeSong?.title ? activeSong?.title : 'No active Song'}
+        </p>
+      </Link>
+      <Link to={`/artists/${activeSong?.artists[0]?.adamid}`}>
+        <p className="truncate text-darkgreen">
+          {activeSong?.subtitle ? activeSong?.subtitle : 'No active Song'}
+        </p>
+      </Link>
     </div>
   </div>
 );

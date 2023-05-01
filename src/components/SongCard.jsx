@@ -15,6 +15,7 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
+  // setActiveSong({ song, data, i }) means: dispatch({ type: 'player/setActiveSong', payload: { song, data, i } })
   const handlePlayClick = () => {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
