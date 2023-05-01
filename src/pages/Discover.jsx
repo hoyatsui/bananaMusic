@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Error, Loader, SongCard } from '../components';
 import { genres } from '../assets/constants';
 
-import { useGetTopChartsQuery } from '../redux/services/shazamCore';
+import { useGetTopChartsQuery, useGetSongsByGenreQuery } from '../redux/services/shazamCore';
+import { selectGenreListId } from '../redux/features/playerSlice';
 
 /**
  * useSelector: get data from redux store
@@ -16,9 +17,9 @@ import { useGetTopChartsQuery } from '../redux/services/shazamCore';
 
 const Discover = () => {
   const dispatch = useDispatch();
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, error } = useGetTopChartsQuery();
-  const genreTitle = 'Pop';
+  const { activeSong, isPlaying, genreListId } = useSelector((state) => state.player);
+  const { data, isFetching, error } = useGetSongsByGenreQuery(genreListId || 'POP');
+  const genreTitle = genres.find((genre) => genre.value === genreListId)?.title;
   if (isFetching) return <Loader title="Loading songs..." />;
   if (error) return <Error />;
   console.log(data);
@@ -28,7 +29,7 @@ const Discover = () => {
 
         <h2 className="font-bold text-3xl text-darkgreen text-left">Discover {genreTitle}</h2>
 
-        <select name="" id="" onChange={() => {}} value="" className="bg-yellow/50 text-darkgreen p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5">
+        <select name="" id="" onChange={(e) => { dispatch(selectGenreListId(e.target.value)); }} value={genreListId} className="bg-yellow/50 text-darkgreen p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5">
           {genres.map((genre) => <option key={genre.value} value={genre.value}>{genre.title}</option>)}
         </select>
       </div>

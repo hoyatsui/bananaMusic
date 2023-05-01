@@ -23,10 +23,6 @@ const ArtistDetails = () => {
   };
   return (
     <div className="flex flex-col">
-      {/* <DetailsHeader
-        artistId={artistId}
-        artistData={artistData?.data[0]}
-      /> */}
       <div className="relative w-full flex flex-col">
         <div className="w-full bg-gradient-to-l from-transparent to-lightgreen/50  sm:h-48 h-28" />
 
@@ -53,12 +49,10 @@ const ArtistDetails = () => {
         <div className="w-full sm:h-44 h-24" />
       </div>
       <RelatedSongs
-        data={artistData?.data[0].views['top-songs']?.data}
+        data={artistData?.data[0].views['top-songs']?.data.slice(0, 9)}
         artistId={artistId}
         isPlaying={isPlaying}
         activeSong={activeSong}
-        handlePauseClick={handlePauseClick}
-        handlePlayClick={handlePlayClick}
       />
     </div>
   );
